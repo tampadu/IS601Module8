@@ -19,6 +19,7 @@ to perform arithmetic operations based on user input.
 """
 
 from typing import Union  # Import Union for type hinting multiple possible types
+import logging
 
 # Define a type alias for numbers that can be either int or float
 Number = Union[int, float]
@@ -117,4 +118,22 @@ def divide(a: Number, b: Number) -> float:
     
     # Perform division of a by b and return the result as a float
     result = a / b
+    return result
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+def add(a: Number, b: Number) -> Number:
+    result = a + b
+    logging.info(f"Add: {a} + {b} = {result}")
+    return result
+
+def divide(a: Number, b: Number) -> float:
+    if b == 0:
+        logging.error("Attempted division by zero!")
+        raise ValueError("Cannot divide by zero!")
+    result = a / b
+    logging.info(f"Divide: {a} / {b} = {result}")
     return result
